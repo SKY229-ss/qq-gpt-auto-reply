@@ -1,0 +1,26 @@
+# Local credentials, bot delivery metadata, and private exports
+.env
+.env.*
+!.env.example
+.qq-state/
+history/
+exports/
+*.sqlite
+*.sqlite-*
+*.db
+*.log
+auth.json
+config.local.*
+secrets.*
+
+# Python and local editor files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+.idea/
+.vscode/

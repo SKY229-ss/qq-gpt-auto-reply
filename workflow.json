@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "status": "local_application_with_live_QQ_delivery_unverified",
+  "transport": "official_qq_bot_open_platform_only",
+  "delay_seconds": 60,
+  "private_chats": {
+    "trigger": "incoming_message_from_another_person",
+    "condition": "human_user_has_not_replied_in_this_conversation_within_60_seconds"
+  },
+  "group_chats": {
+    "trigger": "incoming_message_with_verified_explicit_mention_of_human_user_or_bot",
+    "ignore_all_other_group_messages": true,
+    "condition": "human_user_has_not_replied_to_the_pending_request_within_60_seconds"
+  },
+  "timing": {
+    "origin": "first_unanswered_eligible_message_timestamp",
+    "followups_reset_timer": false,
+    "coalesce_pending_messages_per_conversation_and_sender": true,
+    "human_reply_cancels_pending_reply": true,
+    "recheck_after_generation_before_send": true,
+    "unknown_human_reply_status": "do_not_send"
+  },
+  "automatic_reply": {
+    "generator": "GPT",
+    "required_final_suffix": "(Written by GPT)",
+    "append_suffix_outside_model": true,
+    "deduplicate_inbound_messages": true,
+    "exclude_own_and_bot_messages": true
+  },
+  "chat_history": {
+    "source": "only_user_supplied_or_exported_history",
+    "access": "read_only",
+    "purpose": "imitate_user_speaking_style_only",
+    "edit": false,
+    "delete": false,
+    "use_as_live_reply_status": false,
+    "history_importer_implemented": false
+  },
+  "change_unrelated_qq_settings": false,
+  "activation_requires": [
+    "user_enters_QQ_AppID_and_AppSecret_in_the_local_control_window",
+    "normal_saved_Codex_login_and_compatible_CLI_version",
+    "successful_official_QQ_connection_and_end_to_end_reply_test",
+    "user_explicitly_selects_bot_conversations_with_human_replies_through_the_control_window",
+    "bot_availability_and_permissions_allow_the_intended_conversations"
+  ],
+  "runtime": {
+    "launcher": "Launch QQ Bot.command",
+    "gpt_backend": "official_codex_cli_using_its_normal_saved_login",
+    "qq_live_delivery_verification": "not_yet_verified",
+    "automatic_replies_enabled_by_default": false,
+    "supported_live_scope": "private_chats_to_the_bot_and_explicit_group_mentions_of_the_bot",
+    "human_reply_source": "local_control_window_only_after_user_chooses_this_mode",
+    "personal_QQ_inbox_and_outgoing_replies": "not_accessible",
+    "group_mentions_of_human_only": "not_received_by_this_adapter",
+    "original_personal_account_workflow_implemented": false,
+    "credentials_storage": "QQ_AppSecret_not_saved;_AppID_namespaces_local_metadata;_Codex_manages_its_own_saved_login",
+    "local_state_directory": ".qq-state/<app_id>",
+    "message_text_persisted_by_application": false,
+    "history_access": "none",
+    "requires": "window_open_and_computer_awake",
+    "offline_test_command": "python -m unittest test_rules test_live"
+  },
+  "project": "QQ GPT Auto Reply"
+}
